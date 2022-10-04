@@ -17,39 +17,40 @@ const questions = [
   },
 ];
 function Questions() {
-  const [flip,setFlip] = useState(false)
+  const [flip, setFlip] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
   const increseQuestionNumber = () => {
-    setFlip(false)
+    setFlip(false);
     setQuestionNumber((state) => state + 1);
   };
 
   const decreseQuestionNumber = () => {
-    setFlip(false)
+    setFlip(false);
     setQuestionNumber((state) => state - 1);
   };
 
-  
   return (
-    <CardGrid>
-      <Card
-        front={<Question question={questions[questionNumber].question} />}
-        back={<Answare answare={questions[questionNumber].answare} />}
-        flipState = {[flip,setFlip]}
-      />
-      <div className="command">
-        {/* <button onClick={decreseQuestionNumber}>
+    <>
+      <CardGrid>
+        <Card
+          front={<Question question={questions[questionNumber].question} />}
+          back={<Answare answare={questions[questionNumber].answare} />}
+          flipState={[flip, setFlip]}
+        />
+        <div className="command">
+          {/* <button onClick={decreseQuestionNumber}>
           <BsArrow90DegLeft /> Prev{" "}
         </button> */}
-        <button onClick={increseQuestionNumber}>Repete </button>
-        <button onClick={increseQuestionNumber}> Good </button>
-        <button onClick={increseQuestionNumber}> Easy </button>
-        {/* <button onClick={increseQuestionNumber}>
+          <button onClick={increseQuestionNumber}> Don't know</button>
+          <button onClick={increseQuestionNumber}> Good </button>
+          <button onClick={increseQuestionNumber}> Easy </button>
+          {/* <button onClick={increseQuestionNumber}>
           {" "}
           Next <BsArrow90DegRight />{" "}
         </button> */}
-      </div>
-    </CardGrid>
+        </div>
+      </CardGrid>
+    </>
   );
 }
 const CardGrid = styled.div`
@@ -59,14 +60,27 @@ const CardGrid = styled.div`
   align-items: center;
   max-width: 100%;
   height: 600px;
+
   .command {
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
     gap: 1rem;
   }
   button {
-    width: 5rem;
-    height: 2rem;
+    width: 6rem;
+    height: 4rem;
+    padding: 1px;
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 1rem;
+  }
+  button:nth-child(2) {
+    background-color: blue;
+  }
+  button:nth-child(3) {
+    background-color: green;
   }
 `;
 
