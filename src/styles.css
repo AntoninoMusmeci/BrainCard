@@ -1,8 +1,4 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-  margin: 50px;
-}
+
 .card.flip{
   --rotate-y: 180deg;
 }
@@ -13,9 +9,7 @@
   transform-style: preserve-3d;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y,0));
   transition: 150ms;
-  height: 250px;
-  width: 200px;
-  margin: 10px;
+
 }
 
 .card .front{
