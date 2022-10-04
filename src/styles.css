@@ -1,0 +1,40 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+.card.flip{
+  --rotate-y: 180deg;
+}
+.card {
+
+  
+
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y,0));
+  transition: 150ms;
+  height: 250px;
+  width: 200px;
+  margin: 10px;
+}
+
+.card .front{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.card .back{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 5px 2px rgba(0,0,0,0.5);
+  opacity: 1;
+}
