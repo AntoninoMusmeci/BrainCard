@@ -1,5 +1,10 @@
 import "./styles.css";
-import Questions from "./Pages/Questions";
+import Pages from "./Pages/Pages";
+import { BrowserRouter } from "react-router-dom";
 export default function App() {
-  return <Questions />;
+  return (
+    <BrowserRouter>
+      <Pages />
+    </BrowserRouter>
+  );
 }
