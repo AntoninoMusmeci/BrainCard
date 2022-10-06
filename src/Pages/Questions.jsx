@@ -1,23 +1,12 @@
 import React, { useState } from "react";
 import Card from "../Components/Card";
-import Answare from "../Components/Answare";
-import Question from "../Components/Question";
+
 import styled from "styled-components";
 import { ShowCard } from "../Components/ShowCard";
-import { BsArrow90DegLeft, BsArrow90DegRight } from "react-icons/bs";
-const questions = [
-  {
-    question: "What is the question-answer relationship strategy?",
-    answare:
-      '{"blocks":[{"key":"7s5qn","text":"fesfsfsfsfffffffffff","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gfg9","text":"sssssssssssssssssssosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kpqb","text":"fosijfsofjf ?d","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5nack","text":"fffefsfsfsfsff","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":14,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"4573j","text":"fsfsfù","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":6,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"9or4l","text":"s","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":1,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-  },
-  {
-    question: "How to use the question-answer relationship strategy",
-    answare:
-      '{"blocks":[{"key":"7s5qn","text":"fesfsfsfsfffffffffff","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gfg9","text":"sssssssssssssssssssosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kpqb","text":"fosijfsofjf ?d","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5nack","text":"fffefsfsfsfsff","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":14,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"4573j","text":"fsfsfù","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":6,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"9or4l","text":"s","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":1,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
-  },
-];
+import { useStateContext } from "../utilities/context";
 function Questions() {
+  const { cards } = useStateContext();
+  console.log(cards)
   const [flip, setFlip] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
   const increseQuestionNumber = () => {
@@ -25,17 +14,12 @@ function Questions() {
     setQuestionNumber((state) => state + 1);
   };
 
-  const decreseQuestionNumber = () => {
-    setFlip(false);
-    setQuestionNumber((state) => state - 1);
-  };
-
   return (
     <>
       <CardGrid>
         <Card
-          front={<ShowCard card={questions[questionNumber].answare} />}
-          back={<ShowCard card={questions[questionNumber].answare} />}
+          front={<ShowCard card={cards[questionNumber].front} />}
+          back={<ShowCard card={cards[questionNumber].back} />}
           flipState={[flip, setFlip]}
         />
         <div className="command">
