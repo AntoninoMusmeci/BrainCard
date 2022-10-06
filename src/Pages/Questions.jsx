@@ -3,17 +3,18 @@ import Card from "../Components/Card";
 import Answare from "../Components/Answare";
 import Question from "../Components/Question";
 import styled from "styled-components";
+import { ShowCard } from "../Components/ShowCard";
 import { BsArrow90DegLeft, BsArrow90DegRight } from "react-icons/bs";
 const questions = [
   {
     question: "What is the question-answer relationship strategy?",
     answare:
-      "The question-answer relationship (QAR) strategy helps students understand the different types of questions. By learning that the answers to some questions are “Right There” in the text, that some answers require a reader to “Think and Search,” and that some answers can only be answered “On My Own,” students recognize that they must first consider the question before developing an answer.",
+      '{"blocks":[{"key":"7s5qn","text":"fesfsfsfsfffffffffff","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gfg9","text":"sssssssssssssssssssosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kpqb","text":"fosijfsofjf ?d","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5nack","text":"fffefsfsfsfsff","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":14,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"4573j","text":"fsfsfù","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":6,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"9or4l","text":"s","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":1,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
   },
   {
     question: "How to use the question-answer relationship strategy",
     answare:
-      "The teacher introduces 5th grade students to the QAR strategy. The teacher guides students through the process of deciding where and how they found the answer to a series of questions. At the end of the lesson, the teacher summarizes the four types of questions and se",
+      '{"blocks":[{"key":"7s5qn","text":"fesfsfsfsfffffffffff","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gfg9","text":"sssssssssssssssssssosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"7kpqb","text":"fosijfsofjf ?d","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"5nack","text":"fffefsfsfsfsff","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":14,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"4573j","text":"fsfsfù","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":6,"style":"BOLD"}],"entityRanges":[],"data":{}},{"key":"9or4l","text":"s","type":"unordered-list-item","depth":0,"inlineStyleRanges":[{"offset":0,"length":1,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}',
   },
 ];
 function Questions() {
@@ -33,8 +34,8 @@ function Questions() {
     <>
       <CardGrid>
         <Card
-          front={<Question question={questions[questionNumber].question} />}
-          back={<Answare answare={questions[questionNumber].answare} />}
+          front={<ShowCard card={questions[questionNumber].answare} />}
+          back={<ShowCard card={questions[questionNumber].answare} />}
           flipState={[flip, setFlip]}
         />
         <div className="command">

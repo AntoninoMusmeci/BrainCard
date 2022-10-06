@@ -34,7 +34,5 @@ const CardStyle = styled.div`
   width: 90%;
   max-width: 500px;
   margin: 10px;
-  div {
-    padding: 10px;
-  }
+
 `;
