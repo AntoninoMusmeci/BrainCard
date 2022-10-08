@@ -6,7 +6,6 @@ import { ShowCard } from "../Components/ShowCard";
 import { useStateContext } from "../utilities/context";
 function Questions() {
   const { cards } = useStateContext();
-  console.log(cards);
   const [flip, setFlip] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
   const increseQuestionNumber = () => {

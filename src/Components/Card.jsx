@@ -1,10 +1,7 @@
-import { useState } from "react";
 import "../styles.css";
 import styled from "styled-components";
 
 export default function Card({ front, back, flipState }) {
-  // const [flip, setFlip] = useState(false);
-  console.log(flipState);
   const [flip, setFlip] = flipState;
   const handleClick = () => {
     setFlip(!flip);

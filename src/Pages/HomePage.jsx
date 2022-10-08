@@ -7,20 +7,12 @@ import Modal from "../Components/Modal";
 function HomePage() {
   const [decks, setDecks] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  useEffect(() => {
-    console.log(decks);
-  }, [decks]);
 
   // useEffect to retrieve all existing decks
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-    console.log("useEffect");
-    listDecks(signal)
+    listDecks()
       .then(setDecks)
       .catch((error) => console.log(error));
-
-    return controller.abort();
   }, [setDecks]);
 
   return (

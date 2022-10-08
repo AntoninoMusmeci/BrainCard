@@ -23,6 +23,5 @@ async function fetchJson(url) {
 
 export async function listDecks() {
   const url = `${API_BASE_URL}/decks?_embed=cards`;
-  console.log(url);
   return await fetchJson(url);
 }
