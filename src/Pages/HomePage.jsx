@@ -11,7 +11,7 @@ function HomePage() {
     console.log(decks);
   }, [decks]);
 
-  // useEffect Hook to retrieve all existing decks
+  // useEffect to retrieve all existing decks
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;

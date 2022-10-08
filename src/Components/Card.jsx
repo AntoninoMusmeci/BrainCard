@@ -2,17 +2,17 @@ import { useState } from "react";
 import "../styles.css";
 import styled from "styled-components";
 
-export default function Card({ front, back, flipState}) {
+export default function Card({ front, back, flipState }) {
   // const [flip, setFlip] = useState(false);
-  console.log(flipState)
-  const [flip, setFlip] = flipState
+  console.log(flipState);
+  const [flip, setFlip] = flipState;
   const handleClick = () => {
     setFlip(!flip);
   };
   return (
     <CardStyle className={`card ${flip ? "flip" : ""}`}>
       <div className="front" onClick={handleClick}>
-       {front}
+        {front}
       </div>
       <div className="back" onClick={handleClick}>
         {back}
@@ -20,7 +20,6 @@ export default function Card({ front, back, flipState}) {
     </CardStyle>
   );
 }
-
 
 const CardStyle = styled.div`
   display: flex;
@@ -34,5 +33,4 @@ const CardStyle = styled.div`
   width: 90%;
   max-width: 500px;
   margin: 10px;
-
 `;

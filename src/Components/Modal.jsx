@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 function Modal({ children, onClose }) {
   return (
@@ -11,7 +11,9 @@ function Modal({ children, onClose }) {
         zIndex: 1000,
       }}
     >
-      <ModalCentered onClick={(e) => e.stopPropagation()}>{children(onClose)}</ModalCentered>
+      <ModalCentered onClick={(e) => e.stopPropagation()}>
+        {children(onClose)}
+      </ModalCentered>
     </ModalBG>
   );
 }
@@ -31,13 +33,13 @@ const ModalCentered = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   width: 250px;
   height: 150px;
   background: white;
   color: white;
   z-index: 10;
- 
+
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
 `;
 export default Modal;

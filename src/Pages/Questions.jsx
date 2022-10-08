@@ -6,7 +6,7 @@ import { ShowCard } from "../Components/ShowCard";
 import { useStateContext } from "../utilities/context";
 function Questions() {
   const { cards } = useStateContext();
-  console.log(cards)
+  console.log(cards);
   const [flip, setFlip] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
   const increseQuestionNumber = () => {
@@ -23,16 +23,9 @@ function Questions() {
           flipState={[flip, setFlip]}
         />
         <div className="command">
-          {/* <button onClick={decreseQuestionNumber}>
-          <BsArrow90DegLeft /> Prev{" "}
-        </button> */}
           <button onClick={increseQuestionNumber}> Don't know</button>
           <button onClick={increseQuestionNumber}> Good </button>
           <button onClick={increseQuestionNumber}> Easy </button>
-          {/* <button onClick={increseQuestionNumber}>
-          {" "}
-          Next <BsArrow90DegRight />{" "}
-        </button> */}
         </div>
       </CardGrid>
     </>

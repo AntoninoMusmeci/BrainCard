@@ -16,7 +16,7 @@ function CreateCardPage() {
       front: JSON.stringify(convertToRaw(frontCard.getCurrentContent())),
       back: JSON.stringify(convertToRaw(backCard.getCurrentContent())),
     };
-    console.log(card)
+    console.log(card);
     setCards((c) => [...c, card]);
   };
   return (
