@@ -10,6 +10,7 @@ function Pages() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/questions" element={<Questions />} />
+        <Route path="/decks/:id/" element={<Questions />} />
         <Route path="/createcard" element={<CreateCardPage />} />
       </Routes>
     </>

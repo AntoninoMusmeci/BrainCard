@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Deck from "../Components/Deck";
 import styled from "styled-components";
-import { listDecks } from "../utilities/api";
+import { listDecks, createDeck } from "../utilities/api";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import Modal from "../Components/Modal";
+import { useForm } from "../utilities/useForm";
+import {useNavigate} from "react-router-dom"
 function HomePage() {
   const [decks, setDecks] = useState([]);
   const [showModal, setShowModal] = useState(false);
-
+  const [values, handleChange] = useForm({ name: "", description: "" });
+  const navigate = useNavigate()
   // useEffect to retrieve all existing decks
   useEffect(() => {
     listDecks()
@@ -15,20 +18,35 @@ function HomePage() {
       .catch((error) => console.log(error));
   }, [setDecks]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(values);
+    setDecks([...decks, values])
+    await createDeck(values);
+  };
+
   return (
     <>
       <CartGallery>
         {decks.map((deck) => (
-          <Deck title={deck.name} numberOfCards={deck.cards.length} />
+          <div onClick = {() => {console.log("nav"); navigate(`/decks/${deck.id}/`)}}>
+           <Deck   title={deck.name} numberOfCards={deck.cards?.length | 0} />
+          </div>
+         
         ))}
       </CartGallery>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           {(closeModal) => (
-            <ModalInput>
+            <ModalInput
+              onSubmit={(e) => {
+                handleSubmit(e);
+                closeModal();
+              }}
+            >
               <div> Create Desk </div>
-              <input />
-              <button onClick={closeModal}>Submit</button>
+              <input name="name" onChange={handleChange} />
+              <button type="submit">Submit</button>
             </ModalInput>
           )}
         </Modal>
@@ -38,7 +56,7 @@ function HomePage() {
           setShowModal(!showModal);
         }}
       >
-        <BsFillPlusCircleFill />{" "}
+        <BsFillPlusCircleFill />
       </CreateDeckButton>
     </>
   );
@@ -61,7 +79,7 @@ const CreateDeckButton = styled.div`
   }
 `;
 
-const ModalInput = styled.div`
+const ModalInput = styled.form`
   height: 100%;
   align-items: flex-end;
   display: flex;
