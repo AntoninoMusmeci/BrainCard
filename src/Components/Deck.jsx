@@ -3,19 +3,19 @@ import styled from 'styled-components'
 // import logo from "../logo-black.svg"
 // import {ReactComponent as Logo} from '.././logo-black.svg';
 
-function CardCollection() {
+function Deck({title,numberOfCards}) {
   return (
-    <CardStyle>
+    <DeckStyle>
         {/* <img src={logo} />  */}
         {/* <Logo/> */}
-       <h2> Title</h2>
-       <p> 4 New Cards</p>
-    </CardStyle>
+       <h2> {title}</h2>
+       <p> {numberOfCards} New Cards</p>
+    </DeckStyle>
   )
 }
 
 
-const CardStyle = styled.div`
+const DeckStyle = styled.div`
  
   background: linear-gradient(to left, #f8b500, #fceabb);;
   height: 100px ;
@@ -33,4 +33,4 @@ const CardStyle = styled.div`
     
   } */
 `
-export default CardCollection
+export default Deck
