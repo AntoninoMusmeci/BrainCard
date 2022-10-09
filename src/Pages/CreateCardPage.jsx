@@ -10,12 +10,14 @@ function CreateCardPage() {
   const { setCards } = useStateContext();
   const [frontCard, setFrontCard] = useState(EditorState.createEmpty());
   const [backCard, setBackCard] = useState(EditorState.createEmpty());
-
+  
   const CreateCard = () => {
+    
     const card = {
       front: JSON.stringify(convertToRaw(frontCard.getCurrentContent())),
       back: JSON.stringify(convertToRaw(backCard.getCurrentContent())),
     };
+    console.log(card)
     setCards((c) => [...c, card]);
   };
   return (

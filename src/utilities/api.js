@@ -17,7 +17,8 @@ async function fetchJson(url,options) {
 
     return await response.json();
   } catch (error) {
-    console.log(error);
+    console.log("error:",error);
+    return []
   }
 }
 
@@ -41,5 +42,6 @@ export async function createDeck(deck, signal) {
   
   export async function readDeck(deckId) {
     const url = `${API_BASE_URL}/decks/${deckId}?_embed=cards`;
-    return await fetchJson(url, {});
+    const response = await fetchJson(url, {});
+    return response.cards
   }
