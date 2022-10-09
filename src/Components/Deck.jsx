@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-
-export default function Deck({ title, numberOfCards }) {
-
+import { useNavigate } from "react-router-dom";
+export default function Deck({ title, numberOfCards, id }) {
+  const navigate = useNavigate()
    
 
   return (
-    <DeckStyle className="deck" >
+    <DeckStyle onClick = {() => {console.log("nav"); navigate(`/decks/${id}/`)}} className="deck" >
       <CardBorder/>
       <CardContent>
       <h2 > {title}</h2>
@@ -41,6 +41,14 @@ export const DeckStyle = styled.div`
   height: 220px;
   width: 300px; 
   position: relative;
+  @media(max-width: 1000px) {
+    flex-shrink: 1;
+    width: calc(50% - 4px)
+   
+  }
+  @media(max-width: 400px) {
+    width: 100%;
+  }
 
 
   :hover::before {

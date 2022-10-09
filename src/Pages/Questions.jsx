@@ -32,7 +32,7 @@ function Questions() {
 
   return (
     <>
-      {cards.length > 0 ? (
+      {cards?.length > 0 ? (
         <CardGrid>
           <Card
             front={<ShowCard card={cards[questionNumber].front} />}

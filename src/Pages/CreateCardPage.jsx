@@ -44,6 +44,7 @@ function CreateCardPage() {
 const CreateCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  color: var(--text-color);
 
   padding: 10px;
 `;

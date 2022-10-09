@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import Deck, { DeckStyle, CardBorder, CardContent } from "../Components/Deck";
+import Deck, { DeckStyle, CardBorder } from "../Components/Deck";
 import styled from "styled-components";
 import { listDecks, createDeck } from "../utilities/api";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import Modal from "../Components/Modal";
 import { useForm } from "../utilities/useForm";
-import { useNavigate } from "react-router-dom";
+
 function HomePage() {
   const [decks, setDecks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [values, handleChange] = useForm({ name: "", description: "" });
-  const navigate = useNavigate();
+
   // useEffect to retrieve all existing decks
   useEffect(() => {
     listDecks()
@@ -39,7 +39,7 @@ function HomePage() {
     <Home>
       <CartGallery onMouseMove={(e) => handleMouseMove(e)}>
         {decks.map((deck) => (
-          <Deck title={deck.name} numberOfCards={deck.cards?.length | 0} />
+          <Deck title={deck.name} id = {deck.id} numberOfCards={deck.cards?.length | 0} />
         ))}
       </CartGallery>
       {showModal && (
@@ -51,9 +51,9 @@ function HomePage() {
                 closeModal();
               }}
             >
-              <div> Create Desk </div>
+              <div> Create Deck </div>
               <input name="name" onChange={handleChange} />
-              <button type="submit">Submit</button>
+              <button type="submit">Create</button>
             </ModalInput>
           )}
         </Modal>
@@ -82,17 +82,19 @@ const CartGallery = styled.div`
   :hover > ${DeckStyle} > ${CardBorder} {
     opacity: 1;
   }
+   @media(max-width: 1000px) {
+    max-width: 1000px;
+   
+  }
 `;
 
 const Home = styled.div`
   align-items: center;
-
   display: flex;
-
   justify-content: center;
   margin: 0px;
-
   padding: 0px;
+
 `;
 
 const CreateDeckButton = styled.div`
@@ -118,23 +120,22 @@ const CreateDeckButton = styled.div`
 
 const ModalInput = styled.form`
   height: 100%;
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   div {
     color: black;
-    position: absolute;
-    top: 5%;
-    left: 10px;
   }
   button {
-    background-color: white;
+    background-color: rgb(54 34 111);
     border: none;
     cursor: pointer;
-    margin-right: 10px;
-    padding: 0;
+
+    color: var(--text-color);
+    width: 50%;
+    height: 30px;
   }
   input {
     width: 90%;

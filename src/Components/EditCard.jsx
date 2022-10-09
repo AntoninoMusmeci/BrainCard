@@ -6,8 +6,8 @@ export const EditCard = ({ editorState, setEditorState }) => {
   // const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   return (
-    <div>
-      <Editor
+    <div style = {{backgroundColor: "white", height: "250px", color: "black", padding: "10px"}}>
+      <Editor 
         editorState={editorState}
         toolbarClassName="demo-toolbar-custom"
         wrapperClassName="demo-wrapper"
