@@ -45,7 +45,25 @@ const CreateCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   color: var(--text-color);
-
+  justify-content: center;
+  align-items: center;
   padding: 10px;
+  > div{
+    width: 80%;
+    @media(max-width: 400px) {
+      width: 100%;
+    }
+  }
+  button {
+    
+    
+    margin-top: 20px;
+    background-color: rgb(54 34 111);
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    width: 70%;
+    height: 30px;
+  }
 `;
 export default CreateCardPage;

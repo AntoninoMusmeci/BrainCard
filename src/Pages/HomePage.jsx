@@ -59,7 +59,8 @@ function HomePage() {
         </Modal>
       )}
       <CreateDeckButton
-        onClick={() => {
+        onClick={(e) => {
+          e.target.style.setProperty("--border-px", "2px")
           setShowModal(!showModal);
         }}
       >
@@ -112,6 +113,9 @@ const CreateDeckButton = styled.div`
   align-items: center;
   cursor: pointer;
   background-color: rgb(54 34 111);
+ 
+    border: var(--border-px) solid rgb(141 110 228);
+  
   svg {
     font-size: 40px;
     color: rgb(141 110 228);
@@ -132,7 +136,6 @@ const ModalInput = styled.form`
     background-color: rgb(54 34 111);
     border: none;
     cursor: pointer;
-
     color: var(--text-color);
     width: 50%;
     height: 30px;

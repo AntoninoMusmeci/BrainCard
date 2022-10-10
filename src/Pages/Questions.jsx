@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Components/Card";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import styled from "styled-components";
 import { ShowCard } from "../Components/ShowCard";
 import { useStateContext } from "../utilities/context";
@@ -46,10 +46,10 @@ function Questions() {
           </div>
         </CardGrid>
       ) : (
-        <div>
-          "There are no cards in this deck yet"
-          <button> "Add the first card" </button>{" "}
-        </div>
+        <NoCards>
+          <div> There are no cards in this deck yet </div>
+          <button> <Link to="/createcard"> Add the first card </Link> </button>{" "}
+        </NoCards>
       )}
     </>
   );
@@ -85,4 +85,26 @@ const CardGrid = styled.div`
   }
 `;
 
+
+const NoCards = styled.div`
+  display: grid;
+  color: white;
+  justify-items: center;
+  gap: 10px;
+  div{
+    text-align: center;
+  }
+  a{
+   text-decoration: none;
+   color: white
+  }
+  button {
+    background-color: rgb(54 34 111);
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    width: 50%;
+    height: 30px;
+  }
+  `
 export default Questions;
