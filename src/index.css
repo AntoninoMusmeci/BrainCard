@@ -1,10 +1,12 @@
 :root{
-  --bg-color: rgb(20,20,20);
+  --bg-color: rgb(24 13 55);
   --card-color: rgb(23,23,23);
-  --text-color: rgb(240, 240, 240)
+  --text-color: rgb(240, 240, 240);
+  --border-px: 0 px;
 }
 body {
-  background-color: var(--bg-color)
+  background-color: var(--bg-color);
+  margin: 0
 }
 
 code {

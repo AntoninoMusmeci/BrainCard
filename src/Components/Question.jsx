@@ -10,8 +10,6 @@ function Question({ question }) {
 
 
 const QuestionStyle = styled.div`
-
-
 height: 100%;
 display: flex;
 justify-content: center;
