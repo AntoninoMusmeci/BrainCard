@@ -3,21 +3,24 @@ import { EditCard } from "../Components/EditCard";
 import styled from "styled-components";
 import { convertToRaw } from "draft-js";
 import { EditorState } from "draft-js";
-
+import { useLocation } from "react-router-dom";
 import { useStateContext } from "../utilities/context";
-
+import { createCard } from "../utilities/api";
 function CreateCardPage() {
+  let {id} = useLocation().state;
+  console.log(id)
+
   const { setCards } = useStateContext();
   const [frontCard, setFrontCard] = useState(EditorState.createEmpty());
   const [backCard, setBackCard] = useState(EditorState.createEmpty());
-  
+
   const CreateCard = () => {
-    
     const card = {
+      deckId: Number(id),
       front: JSON.stringify(convertToRaw(frontCard.getCurrentContent())),
       back: JSON.stringify(convertToRaw(backCard.getCurrentContent())),
     };
-    console.log(card)
+    createCard(card)
     setCards((c) => [...c, card]);
   };
   return (
@@ -48,15 +51,13 @@ const CreateCardWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
-  > div{
+  > div {
     width: 80%;
-    @media(max-width: 400px) {
+    @media (max-width: 400px) {
       width: 100%;
     }
   }
   button {
-    
-    
     margin-top: 20px;
     background-color: rgb(54 34 111);
     border: none;

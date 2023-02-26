@@ -45,3 +45,16 @@ export async function createDeck(deck, signal) {
     const response = await fetchJson(url, {});
     return response.cards
   }
+
+
+
+  export async function createCard(card) {
+
+    const url = `${API_BASE_URL}/cards`;
+    const options = {
+      method: "POST",
+      headers,
+      body: JSON.stringify(card),
+    };
+    return await fetchJson(url, options, card);
+  }

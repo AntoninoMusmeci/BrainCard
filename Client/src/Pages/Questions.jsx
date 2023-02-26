@@ -48,7 +48,10 @@ function Questions() {
       ) : (
         <NoCards>
           <div> There are no cards in this deck yet </div>
-          <button> <Link to="/createcard"> Add the first card </Link> </button>{" "}
+
+          <Link to="/createcard" state={{ id: id }}>
+            Add the first card
+          </Link>
         </NoCards>
       )}
     </>
@@ -85,20 +88,18 @@ const CardGrid = styled.div`
   }
 `;
 
-
 const NoCards = styled.div`
   display: grid;
   color: white;
   justify-items: center;
   gap: 10px;
-  div{
+  div {
     text-align: center;
   }
-  a{
-   text-decoration: none;
-   color: white
-  }
-  button {
+  a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
     background-color: rgb(54 34 111);
     border: none;
     cursor: pointer;
@@ -106,5 +107,5 @@ const NoCards = styled.div`
     width: 50%;
     height: 30px;
   }
-  `
+`;
 export default Questions;
