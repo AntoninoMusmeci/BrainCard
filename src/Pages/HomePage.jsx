@@ -20,9 +20,9 @@ function HomePage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+    values.id = Math.random()
     setDecks([...decks, values]);
-    await createDeck(values);
+     
   };
   const handleMouseMove = (e) => {
     for (const card of document.getElementsByClassName("deck")) {
@@ -39,7 +39,7 @@ function HomePage() {
     <Home>
       <CartGallery onMouseMove={(e) => handleMouseMove(e)}>
         {decks.map((deck) => (
-          <Deck title={deck.name} id = {deck.id} numberOfCards={deck.cards?.length | 0} />
+          <Deck key={deck.id} title={deck.name} id = {deck.id} numberOfCards={deck.cards?.length | 0} />
         ))}
       </CartGallery>
       {showModal && (
