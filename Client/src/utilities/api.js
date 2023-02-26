@@ -30,7 +30,6 @@ export async function listDecks() {
 
 export async function createDeck(deck, signal) {
     const url = `${API_BASE_URL}/decks`;
-    console.log("create desk")
     const options = {
       method: "POST",
       headers,
