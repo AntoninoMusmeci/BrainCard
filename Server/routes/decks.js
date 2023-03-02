@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const deck = await Deck.findById(req.params.id);
+  const deck = await Deck.findById(req.params.id).populate('cards');
   if (!deck) return res.status(404).send("Not Found");
   return res.send(deck);
 });
