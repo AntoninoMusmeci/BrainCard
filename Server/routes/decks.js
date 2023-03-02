@@ -38,6 +38,6 @@ router.put("/:id", async (req, res) => {
     { $set: { name: req.body.name, description: req.body.description } },
     { new: true }
   );
-  if (!deck) return res.status("404").send("Not found");
+  if (!deck) return res.status(404).send("Not found");
   res.send(deck);
 });
