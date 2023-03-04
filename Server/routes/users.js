@@ -2,8 +2,9 @@ import express from "express";
 import { User, validateUser } from "../models/user.js";
 import bcrypt from "bcrypt";
 export const router = express.Router();
+import { auth } from "../middleware/auth.js";
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   const users = await User.find().sort("name").select("_id name email");
   res.send(users);
 });
@@ -23,6 +24,6 @@ router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
   await user.save();
-  
-  res.send({"_id": user._id, "name": user.name, "email": user.email});
+
+  res.send({ _id: user._id, name: user.name, email: user.email });
 });
