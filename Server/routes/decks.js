@@ -1,20 +1,23 @@
 import express from "express";
 import { validateDeck, Deck } from "../models/deck.js";
 import { auth } from "../middleware/auth.js";
+import { asyncMiddleware } from "../middleware/async.js";
+
+
 export const router = express.Router();
 
-router.get("/", auth, async (req, res) => {
+router.get("/", auth, asyncMiddleware(async(req, res) => {
   const decks = await Deck.find().sort("name");
   res.send(decks);
-});
+}));
 
-router.get("/:id", auth, async (req, res) => {
+router.get("/:id", auth, asyncMiddleware(async (req, res) => {
   const deck = await Deck.findById(req.params.id).populate("cards");
   if (!deck) return res.status(404).send("Not Found");
   return res.send(deck);
-});
+}));
 
-router.post("/", auth, async (req, res) => {
+router.post("/", auth, asyncMiddleware(async (req, res) => {
   const { error } = validateDeck(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   const deck = new Deck({
@@ -23,15 +26,15 @@ router.post("/", auth, async (req, res) => {
   });
   await deck.save();
   res.send(deck);
-});
+}));
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", auth,asyncMiddleware( async (req, res) => {
   const deck = await Deck.deleteOne({ _id: req.params.id });
   if (!deck) return res.status(404).send("Not found");
   res.send(deck);
-});
+}));
 
-router.put("/:id", auth, async (req, res) => {
+router.put("/:id", auth, asyncMiddleware( async (req, res) => {
   const { error } = validateDeck(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   const deck = await Deck.findByIdAndUpdate(
@@ -41,4 +44,4 @@ router.put("/:id", auth, async (req, res) => {
   );
   if (!deck) return res.status(404).send("Not found");
   res.send(deck);
-});
+}));

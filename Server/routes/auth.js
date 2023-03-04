@@ -2,6 +2,7 @@ import express from "express"
 import Joi from "joi"
 import { User } from "../models/user.js"
 import bcrypt from "bcrypt";
+import { asyncMiddleware } from "../middleware/async.js";
 export const router = express.Router()
 
 if (!process.env.JWT_KEY){
@@ -9,7 +10,7 @@ if (!process.env.JWT_KEY){
     process.exit(1)
 }
 
-router.post("/", async (req, res) => {
+router.post("/", asyncMiddleware(async (req, res) => {
     const {error} = validate(req.body);
     if (error) return res.status(400).send(error.details[0].message)
     let user = await User.findOne({email: req.body.email})
@@ -19,7 +20,7 @@ router.post("/", async (req, res) => {
     if(!isValidPassword) return res.status(400).send("Invalid Email or Password")
     const token = user.generateAuthToken()
     res.send(token)
-})
+}))
 
 
 
