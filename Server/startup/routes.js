@@ -5,7 +5,7 @@ import { router as users } from "../routes/users.js";
 import { router as auth } from "../routes/auth.js";
 import express from "express";
 
-export const handleRoute = function(app) {
+export const handleRoutes = function(app) {
     app.use(express.json());
     app.use("/api/decks", decks);
     app.use("/api/cards", cards);
