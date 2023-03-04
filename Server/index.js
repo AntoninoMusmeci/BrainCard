@@ -1,10 +1,7 @@
-import express, { json } from "express";
-import { router as decks } from "./routes/decks.js";
-import { router as cards } from "./routes/cards.js";
-import { router as users } from "./routes/users.js";
-import { router as auth } from "./routes/auth.js";
+import express from "express";
 import mongoose from "mongoose";
 import * as dotenv from 'dotenv' 
+import { handleRoute } from "./startup/routes.js";
 dotenv.config();
 
 const dbUri = process.env.DB_URI
@@ -18,11 +15,7 @@ mongoose
   });
 
 const app = express();
-app.use(express.json());
-app.use("/api/decks", decks);
-app.use("/api/cards", cards);
-app.use("/api/users", users);
-app.use("/api/auth", auth)
+handleRoute(app)
 
 const port = process.env.PORT | 3001;
 app.listen(port, () => {
