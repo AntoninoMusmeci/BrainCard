@@ -3,9 +3,12 @@ import { router as decks } from "./routes/decks.js";
 import { router as cards } from "./routes/cards.js";
 import { router as users } from "./routes/users.js";
 import mongoose from "mongoose";
+import * as dotenv from 'dotenv' 
+dotenv.config();
 
+const dbUri = process.env.DB_URI
 mongoose
-  .connect("mongodb://localhost/memflix")
+  .connect(dbUri)
   .then(() => {
     console.log("Connected to the database...");
   })
