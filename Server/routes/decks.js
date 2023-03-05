@@ -2,7 +2,7 @@ import express from "express";
 import { validateDeck, Deck } from "../models/deck.js";
 import { auth } from "../middleware/auth.js";
 import { asyncMiddleware } from "../middleware/async.js";
-
+import { admin } from "../middleware/admin.js";
 
 export const router = express.Router();
 
@@ -28,7 +28,7 @@ router.post("/", auth, asyncMiddleware(async (req, res) => {
   res.send(deck);
 }));
 
-router.delete("/:id", auth,asyncMiddleware( async (req, res) => {
+router.delete("/:id", [auth,admin], asyncMiddleware( async (req, res) => {
   const deck = await Deck.deleteOne({ _id: req.params.id });
   if (!deck) return res.status(404).send("Not found");
   res.send(deck);
