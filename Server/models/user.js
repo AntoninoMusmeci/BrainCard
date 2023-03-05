@@ -13,7 +13,12 @@ const userSchema = new mongoose.Schema({
     maxlenght: 256,
   },
   password: { type: String, required: true, maxlenght: 1024 },
-
+  decks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Deck",
+    },
+  ],
   isAdmin: Boolean,
 });
 

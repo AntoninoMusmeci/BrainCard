@@ -8,10 +8,21 @@ export const router = express.Router();
 
 router.get(
   "/",
-  [auth,admin],
+  [auth, admin],
   asyncMiddleware(async (req, res) => {
-    const users = await User.find().sort("name").select("-password -decks -__v");
+    const users = await User.find()
+      .sort("name")
+      .select("-password -decks -__v");
     res.send(users);
+  })
+);
+
+router.get(
+  "/decks",
+  [auth],
+  asyncMiddleware(async (req, res) => {
+    const users = await User.findById(req.user._id).populate("decks","-cards -__v");
+    res.send(users.decks);
   })
 );
 
