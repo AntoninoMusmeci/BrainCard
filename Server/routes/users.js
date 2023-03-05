@@ -2,13 +2,15 @@ import express from "express";
 import { User, validateUser } from "../models/user.js";
 import bcrypt from "bcrypt";
 import { auth } from "../middleware/auth.js";
+import { admin } from "../middleware/admin.js";
 import { asyncMiddleware } from "../middleware/async.js";
 export const router = express.Router();
+
 router.get(
   "/",
-  auth,
+  [auth,admin],
   asyncMiddleware(async (req, res) => {
-    const users = await User.find().sort("name").select("_id name email");
+    const users = await User.find().sort("name").select("-password -decks -__v");
     res.send(users);
   })
 );
