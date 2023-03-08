@@ -7,29 +7,56 @@ import { useStateContext } from "../utilities/context";
 import { readDeck } from "../utilities/api";
 function Questions() {
   const { id } = useParams();
-  const { cards, setCards } = useStateContext();
+  // const { cards, setCards } = useStateContext();
 
-  useEffect(() => {
-    readDeck(id)
-      .then(setCards)
-      .catch((error) => console.log(error));
-  }, [id, setCards]);
+  // useEffect(() => {
+  //   readDeck(id)
+  //     .then(setCards)
+  //     .catch((error) => console.log(error));
+  // }, [id, setCards]);
 
-  useEffect(() => {
-    if (cards.length > 0)
-      console.log(
-        cards,
-        cards[questionNumber].front,
-        cards[questionNumber].back
-      );
-  }, [cards]);
+  // useEffect(() => {
+  //   if (cards.length > 0)
+  //     console.log(
+  //       cards,
+  //       cards[questionNumber].front,
+  //       cards[questionNumber].back
+  //     );
+  // }, [cards]);
+  //   setCards( [{
+  //   "id": 1,
+  //   "front": "{\"blocks\":[{\"key\":\"1791l\",\"text\":\"fefsfsfsf\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+  //   "back": "{\"blocks\":[{\"key\":\"446t2\",\"text\":\"eeeeeeeee\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+  //   "deckId": 1
+  // },
+  // {
+  //   "id": 2,
+  //   "front": "{\"blocks\":[{\"key\":\"1791l\",\"text\":\"fefsfsfsf\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+  //   "back": "{\"blocks\":[{\"key\":\"446t2\",\"text\":\"eeeeeeeee\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+  //   "deckId": 1
+  // }])
   const [flip, setFlip] = useState(false);
   const [questionNumber, setQuestionNumber] = useState(0);
   const increseQuestionNumber = () => {
     setFlip(false);
     setQuestionNumber((state) => state + 1);
   };
-
+  const cards = [
+    {
+      id: 1,
+      front:
+        'Questionnnnn ???',
+      back: 'answerrrrrrrr!!!',
+      deckId: 1,
+    },
+    {
+      id: 2,
+      front:
+        '{"blocks":[{"key":"1791l","text":"fefsfsfsf","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+      back: '{"blocks":[{"key":"446t2","text":"eeeeeeeee","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}',
+      deckId: 1,
+    },
+  ];
   return (
     <>
       {cards?.length > 0 ? (
@@ -37,7 +64,6 @@ function Questions() {
           <Card
             front={<ShowCard card={cards[questionNumber].front} />}
             back={<ShowCard card={cards[questionNumber].back} />}
-            flipState={[flip, setFlip]}
           />
           <div className="command">
             <button onClick={increseQuestionNumber}> Don't know</button>

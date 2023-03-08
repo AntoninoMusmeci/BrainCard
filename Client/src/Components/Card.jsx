@@ -1,33 +1,44 @@
-import "../styles.css";
+import { useState } from "react";
 import styled from "styled-components";
+import "../styles.css";
 
-export default function Card({ front, back, flipState }) {
-  const [flip, setFlip] = flipState;
+export default function Card({ front, back }) {
+  const [flip, setFlip] = useState(false);
+
   const handleClick = () => {
     setFlip(!flip);
   };
   return (
-    <CardStyle className={`card ${flip ? "flip" : ""}`}>
-      <div className="front" onClick={handleClick}>
-        {front}
-      </div>
-      <div className="back" onClick={handleClick}>
-        {back}
-      </div>
+    <CardStyle flip={flip} onClick={handleClick}>
+      {console.log(flip)}
+      {flip ? <div>{front}</div> : <div>{back}</div>}
     </CardStyle>
   );
 }
 
 const CardStyle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  border-radius: 0.4rem;
+  /* border-radius: 0.4rem;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
   background-color: #f1f1f1;
   height: 90%;
-  width: 90%;
-  max-width: 500px;
-  margin: 10px;
+  width: 70%;
+  margin: 20px;
+  padding: 20px; */
+  /* transform-style: preserve-3d;
+  transform: rotateY(${(props) => (props.flip ? "180deg" : 0)});
+  transition: 150ms; */
+
+  div {
+    width: 100%;
+    height: 100%;
+    /* transform: rotateY(${(props) => (props.flip ? "180deg" : 0)}); */
+  }
 `;
+
+// const CardFront = styled.div`
+// width: 100%;
+// height: 100%;
+// position: absolute;
+// transform: rotateY(180deg);
+
+// `
