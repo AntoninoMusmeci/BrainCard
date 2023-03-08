@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import { EditCard } from "../Components/EditCard";
 import styled from "styled-components";
-import { convertToRaw } from "draft-js";
-import { EditorState } from "draft-js";
 import { useLocation } from "react-router-dom";
 import { useStateContext } from "../utilities/context";
 import { createCard } from "../utilities/api";
 function CreateCardPage() {
   let {id} = useLocation().state;
-  console.log(id)
-
   const { setCards } = useStateContext();
-  const [frontCard, setFrontCard] = useState(EditorState.createEmpty());
-  const [backCard, setBackCard] = useState(EditorState.createEmpty());
+  const [frontCard, setFrontCard] = useState("");
+  const [backCard, setBackCard] = useState("");
 
   const CreateCard = () => {
     const card = {
       deckId: Number(id),
-      front: JSON.stringify(convertToRaw(frontCard.getCurrentContent())),
-      back: JSON.stringify(convertToRaw(backCard.getCurrentContent())),
+      front: JSON.stringify(frontCard),
+      back: JSON.stringify(backCard),
     };
     createCard(card)
     setCards((c) => [...c, card]);
