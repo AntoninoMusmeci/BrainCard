@@ -35,18 +35,17 @@ function Questions() {
   //   "back": "{\"blocks\":[{\"key\":\"446t2\",\"text\":\"eeeeeeeee\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
   //   "deckId": 1
   // }])
-  const [flip, setFlip] = useState(false);
+ 
   const [questionNumber, setQuestionNumber] = useState(0);
   const increseQuestionNumber = () => {
-    setFlip(false);
+    setShowAnswer(false);
     setQuestionNumber((state) => state + 1);
   };
   const cards = [
     {
       id: 1,
-      front:
-        'Questionnnnn ???',
-      back: 'answerrrrrrrr!!!',
+      front: "Questionnnnn ???",
+      back: "answerrrrrrrr!!!",
       deckId: 1,
     },
     {
@@ -57,6 +56,7 @@ function Questions() {
       deckId: 1,
     },
   ];
+  const [showAnswer, setShowAnswer] = useState(false);
   return (
     <>
       {cards?.length > 0 ? (
@@ -64,11 +64,19 @@ function Questions() {
           <Card
             front={<ShowCard card={cards[questionNumber].front} />}
             back={<ShowCard card={cards[questionNumber].back} />}
+            showAnswer = {showAnswer}
           />
+
           <div className="command">
-            <button onClick={increseQuestionNumber}> Don't know</button>
-            <button onClick={increseQuestionNumber}> Good </button>
-            <button onClick={increseQuestionNumber}> Easy </button>
+            {showAnswer ? (
+              <>
+                <button onClick={increseQuestionNumber}> Don't know</button>
+                <button onClick={increseQuestionNumber}> Good </button>
+                <button onClick={increseQuestionNumber}> Easy </button>{" "}
+              </>
+            ) : (
+              <button onClick={() => setShowAnswer(true)}> Show Answer </button>
+            )}
           </div>
         </CardGrid>
       ) : (
