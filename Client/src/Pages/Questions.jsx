@@ -59,7 +59,7 @@ function Questions() {
   const [showAnswer, setShowAnswer] = useState(false);
   return (
     <>
-      {cards?.length > 0 ? (
+      {questionNumber < cards?.length  ? (
         <CardGrid>
           <Card
             front={<ShowCard card={cards[questionNumber].front} />}
@@ -80,6 +80,8 @@ function Questions() {
           </div>
         </CardGrid>
       ) : (
+        cards.length <= 0 ?
+
         <NoCards>
           <div> There are no cards in this deck yet </div>
 
@@ -87,6 +89,8 @@ function Questions() {
             Add the first card
           </Link>
         </NoCards>
+      : <>
+      Congratulations! You have finished this deck for now. </>
       )}
     </>
   );
