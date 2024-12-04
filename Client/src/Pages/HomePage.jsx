@@ -7,16 +7,42 @@ import Modal from "../Components/Modal";
 import { useForm } from "../utilities/useForm";
 
 function HomePage() {
-  const [decks, setDecks] = useState([]);
+  const [decks, setDecks] = useState([
+    {
+      "id": 1,
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+    
+    },
+    {
+      "name": "React Router",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "id": 2
+    },
+    {
+      "name": "React Router",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "id": 2
+    },
+    {
+      "name": "React Router",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "id": 2
+    },
+    {
+      "name": "React Router",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "id": 2
+    }]);
   const [showModal, setShowModal] = useState(false);
   const [values, handleChange] = useForm({ name: "", description: "" });
 
   // useEffect to retrieve all existing decks
-  useEffect(() => {
-    listDecks()
-      .then(setDecks)
-      .catch((error) => console.log("error!"));
-  }, [setDecks]);
+  // useEffect(() => {
+  //   listDecks()
+  //     .then(setDecks)
+  //     .catch((error) => console.log("error!"));
+  // }, [setDecks]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
